@@ -2,6 +2,7 @@
 """
 Temel sinyal analiz fonksiyonları
 """
+import numpy as np
 
 def sampling_rate(t):
     """
@@ -16,7 +17,12 @@ def sampling_rate(t):
     # TODO:
     # 1. ardışık iki zaman örneği arasındaki farkı hesapla
     # 2. fs = 1 / dt
-    pass
+    passt = np.asarray(t)
+
+    dt = t[1] - t[0]
+    fs = 1.0 / dt
+
+    return fs
 
 
 def basic_stats(x):
@@ -36,4 +42,10 @@ def basic_stats(x):
     """
     # TODO:
     # numpy kullanarak gerekli istatistikleri hesapla
-    pass
+    return {
+        "mean": np.mean(x),
+        "std": np.std(x),
+        "rms": np.sqrt(np.mean(x ** 2)),
+        "min": np.min(x),
+        "max": np.max(x)
+    }
